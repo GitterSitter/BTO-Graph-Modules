@@ -2,15 +2,22 @@
   "compilerOptions": {
     "target": "es5",
     "forceConsistentCasingInFileNames": true,
+   //  "moduleResolution": "node",  
     "module": "commonjs",
     "jsx": "react",
     "declaration": true,
     "sourceMap": true,
     "experimentalDecorators": true,
+   "typeRoots": [
+      "./node_modules/@types/"
+    ] 
+   ,
     "types": [
+      "node",
       "es6-promise",
       "es6-collections",
       "webpack-env"
+
     ]
   }
 }
