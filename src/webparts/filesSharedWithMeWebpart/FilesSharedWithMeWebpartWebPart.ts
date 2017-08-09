@@ -16,10 +16,81 @@ import { IFilesSharedWithMeWebpartWebPartProps } from './IFilesSharedWithMeWebpa
 // import * as buffer from "buffer";
 // import * as http from "http";
 //import * as stream from 'stream';
-//import * as WebRequest from 'web-request';
+
 //import url = require('url');
 import * as request from 'request';
-console.log("oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo");
+import * as WebRequest from 'web-request';
+import * as jQuery from "jQuery";
+
+function getCurrentUserLoginName() {
+
+        var query = "https://bouvetasa.sharepoint.com/_api/web/currentuser";
+        // Get currentUserLoginName
+        jQuery.ajax({
+            url: query, //this.tenantUrl + query,
+            method: "GET",
+            headers: { "Accept": "application/json; odata=minimalmetadata" },
+            success: function (data) {
+                getFilesSharedWithUser(data.LoginName.split('|')[2]);
+            },
+            error: function (data) {
+               console.log(data);
+            }
+        });
+}
+
+function getFilesSharedWithUser(userName){
+ 
+    var query = "https://bouvetasa.sharepoint.com/_api/search/query?querytext='(SharedWithUsersOWSUSER:britt.skaflestad@bouvet.no)'";
+        jQuery.ajax({
+            url: query, 
+            method: "GET",
+            headers: { "Accept": "application/json" }, 
+            success: function (data) {
+                var files = data.PrimaryQueryResult.RelevantResults.Table.Rows;              
+                var result = {};
+
+
+                if (files != "")
+                {             
+                  files.forEach(element => {
+                    var table = element.Cells;
+
+                      table.forEach(el => {
+                        if(el.Key == "Author"){
+                    
+                       el.Value;
+                        }
+                      if(el.Key == "Path"){
+                   //     console.log(el.Value);
+                        el.Value;
+                        }
+                      if(el.Key == "LastModifiedTime"){
+                   //     console.log(el.Value);
+                         el.Value;
+                        }
+                      if(el.Key == "Title"){
+                     //   console.log(el.Value);
+                         el.Value;
+                        }
+                     
+                      });
+                  
+                  
+                  });
+                }
+          
+            },
+            error: function (data) {
+                //failed(data);
+                 console.log(data + "Error");
+                
+            }
+        });
+}
+
+
+
 (async function () {
  // getCurrentUserSP();
     // var result = await  WebRequest.get('http://www.bt.no');
@@ -35,9 +106,12 @@ console.log("ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
       'Content-Type': 'application/x-www-form-urlencoded',
       'Access-Control-Allow-Headers': 'X-Requested-With,content-type'
     }
-};
 
-  //var test = await WebRequest.get('http://xyzzy.com/123', {throwResponseError: true});
+   
+};
+ getCurrentUserLoginName();
+
+  // var test = await WebRequest.get('http://xyzzy.com/123', {throwResponseError: true});
  
 // request(req, function (err, res, body) {
 //    // this.config = JSON.parse(body);
