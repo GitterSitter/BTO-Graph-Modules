@@ -2227,7 +2227,7 @@ function getManifests() {
           "default": "BTO"
         },
         "title": {
-          "default": "Files shared with me webpart"
+          "default": "Files shared with me"
         },
         "description": {
           "default": "This webparts shows you all files that someone is sharing with you"

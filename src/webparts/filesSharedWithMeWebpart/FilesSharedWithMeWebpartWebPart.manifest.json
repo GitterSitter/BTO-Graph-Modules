@@ -16,7 +16,7 @@
   "preconfiguredEntries": [{
     "groupId": "f4ae596f-48a5-40cf-8e72-7679c09c9cac",
     "group": { "default": "BTO" },
-    "title": { "default": "Files shared with me webpart" },
+    "title": { "default": "Files shared with me" },
     "description": { "default": "This webparts shows you all files that someone is sharing with you" },
     "officeFabricIconFontName": "Page",
     "properties": {

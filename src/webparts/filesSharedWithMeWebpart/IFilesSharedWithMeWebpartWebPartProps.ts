@@ -1,4 +1,4 @@
 export interface IFilesSharedWithMeWebpartWebPartProps {
   description: string;
-  files: Array<{name, url, sharedBy, sharedDate}>;
+  //files: Array<{Author, Path, LastModifiedTimeMoment, LastModifiedTime, Title}>;
 }
