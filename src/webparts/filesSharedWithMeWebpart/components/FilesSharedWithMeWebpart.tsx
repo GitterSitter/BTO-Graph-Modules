@@ -45,11 +45,11 @@ var that = this;
                   files.forEach(element => {
                       var table = element.Cells;
                       var result = {
-                        "Author": table.find(d => d.Key === "Author").Value.replace(';', ', '),
-                        "Path": table.find(d => d.Key === "ServerRedirectedURL").Value,
-                        "LastModifiedTimeMoment" : moment(table.find(d => d.Key === "LastModifiedTime").Value).format("DD.MM.YYYY"),
-                        "LastModifiedTime": table.find(d => d.Key === "LastModifiedTime").Value,
-                        "Title": table.find(d => d.Key === "Title").Value
+                        "Author": table.filter(d => d.Key === "Author")[0].Value.replace(';', ', '),
+                        "Path": table.filter(d => d.Key === "ServerRedirectedURL")[0].Value,
+                        "LastModifiedTimeMoment" : moment(table.filter(d => d.Key === "LastModifiedTime")[0].Value).format("DD.MM.YYYY"),
+                        "LastModifiedTime": table.filter(d => d.Key === "LastModifiedTime")[0].Value,
+                        "Title": table.filter(d => d.Key === "Title")[0].Value
                     };
 
                   //No data from test-environment is interesting! && result.Path.toString().indexOf(tenantUrl+"/sites/pobto") < 0?
@@ -83,7 +83,7 @@ var that = this;
   }
 
   public componentWillMount(){     
-    this.setFilesSharedWithUserToState();    
+    this.setFilesSharedWithUserToState();
   }
  
  
